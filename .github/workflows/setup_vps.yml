@@ -19,6 +19,17 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
 
+      - name: Debug SSH key
+        run: |
+          echo "Private key:"
+          cat ~/.ssh/id_rsa
+          echo "Public key:"
+          ssh-keygen -y -f ~/.ssh/id_rsa
+
+      - name: Test SSH connection
+        run: |
+          ssh -v ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo 'SSH connection successful'"
+
       - name: Copy files to VM
         run: |
           scp -r . ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }}:/path/to/deploy

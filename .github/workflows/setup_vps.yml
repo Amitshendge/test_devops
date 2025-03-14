@@ -24,7 +24,7 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          sshpass -p 'Rohi97531@#$' ssh -v ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo 'SSH connection successful'"
+          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh -v ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo 'SSH connection successful'"
 
       - name: MKdir depoyment
         run: |

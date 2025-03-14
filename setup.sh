@@ -16,7 +16,7 @@ python3 -m venv venv
 pip install --upgrade pip
 
 # Install dependencies from requirements.txt (if exists)
-if [ -f requirements.txt ]; then
+if [ -f git_code/requirements.txt ]; then
    pip install -r requirements.txt
 else
    echo "requirements.txt not found, skipping dependency installation."

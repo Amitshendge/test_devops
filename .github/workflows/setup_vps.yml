@@ -1,32 +1,28 @@
-name: Setup VPS SSH Access
+name: Deploy to Hostinger VPS
 
 on:
-  workflow_dispatch:  # Manually trigger this workflow from GitHub Actions
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
 
 jobs:
-  setup:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate SSH Key
-        run: |
-          ssh-keygen -t rsa -b 4096 -f id_rsa -N ""
-          echo "PRIVATE_KEY<<EOF" >> $GITHUB_ENV
-          cat id_rsa >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-          echo "PUBLIC_KEY=$(cat id_rsa.pub)" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Add Public Key to VPS
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-          mkdir -p ~/.ssh
-          echo "${{ env.PUBLIC_KEY }}" >> ~/.ssh/authorized_keys
-          chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/authorized_keys
-          EOF
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
 
-      - name: Store Private Key as GitHub Secret (Manual Step)
+      - name: Copy files to VM
         run: |
-          echo "Go to GitHub Repository -> Settings -> Secrets and Variables -> Actions"
-          echo "Create a new secret named VPS_SSH_KEY and paste the following private key:"
-          echo "${{ env.PRIVATE_KEY }}"
+          scp -r . ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }}:/path/to/deploy
+
+      - name: Run setup script on VM
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "cd /path/to/deploy && chmod +x setup.sh && ./setup.sh"

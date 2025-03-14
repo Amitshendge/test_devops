@@ -24,12 +24,16 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          sshpass -p '12345678' ssh -v deploy@${{ secrets.VM_IP }} "echo 'SSH connection successful'"
+          sshpass -p 'Rohi97531@#$' ssh -v ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo 'SSH connection successful'"
 
       - name: Copy files to VM
         run: |
           scp -r . ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }}:/path/to/deploy
 
+      - name: MKdir depoyment
+        run: |
+          mkdir -p deploy_code
+          
       - name: Run setup script on VM
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "cd /path/to/deploy && chmod +x setup.sh && ./setup.sh"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "cd deploy_code && chmod +x setup.sh && ./setup.sh"

@@ -15,12 +15,11 @@ python3 -m venv venv
 # Upgrade pip to the latest version
 pip install --upgrade pip
 
-pip install pandas
 # Install dependencies from requirements.txt (if exists)
-#if [ -f requirements.txt ]; then
-#    pip install -r requirements.txt
-#else
-#    echo "requirements.txt not found, skipping dependency installation."
-#fi
+if [ -f requirements.txt ]; then
+   pip install -r requirements.txt
+else
+   echo "requirements.txt not found, skipping dependency installation."
+fi
 
-#echo "Python setup complete. Virtual environment is ready."
+echo "Python setup complete. Virtual environment is ready."

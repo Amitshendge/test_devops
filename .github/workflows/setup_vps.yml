@@ -15,7 +15,9 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -v root@147.93.112.162 "echo 'SSH connection successful'"
+          sudo apt-get install sshpass
+          
+          sshpass -p '12345678' ssh -v deploy@147.93.112.162 "echo 'SSH connection successful'"
 
       - name: Copy files to VM
         run: |

@@ -28,7 +28,7 @@ jobs:
 
       - name: MKdir depoyment
         run: |
-          mkdir -p deploy_code
+          mkdir -p /root/deploy_code
           
       - name: Copy files to VM
         run: |
@@ -36,4 +36,4 @@ jobs:
           
       - name: Run setup script on VM
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "cd deploy_code && chmod +x setup.sh && ./setup.sh"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "cd /root/deploy_code && chmod +x setup.sh && ./setup.sh"

@@ -36,4 +36,4 @@ jobs:
           
       - name: Run setup script on VM
         run: |
-          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "sh /home/${{ secrets.SSH_USER }}/git_code/setup.sh"
+          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "rm -rf /home/${{ secrets.SSH_USER }}/git_code && mkdir -p /home/${{ secrets.SSH_USER }}/git_code"

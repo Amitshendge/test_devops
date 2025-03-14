@@ -26,13 +26,13 @@ jobs:
         run: |
           sshpass -p 'Rohi97531@#$' ssh -v ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo 'SSH connection successful'"
 
-      - name: Copy files to VM
-        run: |
-          scp -r . ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }}:/path/to/deploy
-
       - name: MKdir depoyment
         run: |
           mkdir -p deploy_code
+          
+      - name: Copy files to VM
+        run: |
+          scp -r . ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }}:/path/to/deploy
           
       - name: Run setup script on VM
         run: |

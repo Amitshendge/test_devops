@@ -10,12 +10,12 @@ ls
 python3 -m venv venv
 
 # Activate the virtual environment
-source venv/bin/activate
+. venv/bin/activate
 
 # Upgrade pip to the latest version
-# pip install --upgrade pip
+pip install --upgrade pip
 
-# pip install pandas
+pip install pandas
 # Install dependencies from requirements.txt (if exists)
 #if [ -f requirements.txt ]; then
 #    pip install -r requirements.txt

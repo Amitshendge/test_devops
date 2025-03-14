@@ -17,7 +17,7 @@ pip install --upgrade pip
 
 # Install dependencies from requirements.txt (if exists)
 if [ -f git_code/requirements.txt ]; then
-   pip install -r requirements.txt
+   pip install -r git_code/requirements.txt
 else
    echo "requirements.txt not found, skipping dependency installation."
 fi

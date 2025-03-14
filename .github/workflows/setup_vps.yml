@@ -38,10 +38,6 @@ jobs:
         run: |
           sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/setup.sh"
 
-      - name: Avtivate venv
-        run: |
-          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | . venv/bin/activate"
-
       - name: Run deployment script on VM
         run: |
-          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "cd /home/${{ secrets.SSH_USER }}/git_code && echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/deploy.sh"
+          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/deploy.sh"

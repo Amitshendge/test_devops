@@ -1,3 +1,3 @@
 . venv/bin/activate
 
-streamlit run git_code/app.py
+nohup streamlit run git_code/app.py

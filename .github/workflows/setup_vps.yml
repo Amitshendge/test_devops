@@ -36,8 +36,8 @@ jobs:
 
       - name: Run setup script on VM
         run: |
-          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/setup.sh"
+          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/devops_scripts/setup.sh"
 
       - name: Run deployment script on VM
         run: |
-          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/deploy.sh"
+          sshpass -p ${{ secrets.DEPLOY_SSH_PASSWORD }} ssh ${{ secrets.SSH_USER }}@${{ secrets.VM_IP }} "echo '${{ secrets.DEPLOY_SSH_PASSWORD }}' | sudo -S sh /home/${{ secrets.SSH_USER }}/git_code/devops_scripts/deploy.sh"

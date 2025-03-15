@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Set the title of the app
-st.title("My First Streamlit App")
+st.title("Myy First Streamlit App")
 # Add a header
 st.header("Welcome to my app!")
 # Add a subheader

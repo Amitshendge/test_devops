@@ -1,4 +1,5 @@
 . venv/bin/activate
+cp .env git_code/.env
 
 kill -9 $(lsof -t -i:8500)
 
